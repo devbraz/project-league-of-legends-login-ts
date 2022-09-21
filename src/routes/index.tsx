@@ -4,7 +4,9 @@ import { Login } from "../pages/Login";
 export const MainRoutes = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<Login />} />
+			<Route path="/">
+				<Login />
+			</Route>
 		</Routes>
 	);
 };
