@@ -1,9 +1,12 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { LoginForm } from "./LoginForm";
+import { LoginVideo } from "./LoginVideo";
 
 export const Login = () => {
 	return (
 		<Box>
-			<Text>aaaa</Text>
+			<LoginForm />
+			<LoginVideo />
 		</Box>
 	);
 };
