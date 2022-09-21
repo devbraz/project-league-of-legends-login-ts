@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
-import { LoginForm } from "./LoginForm";
-import { LoginVideo } from "./LoginVideo";
+import { LoginForm } from "../../components/LoginForm";
+import { LoginVideo } from "../../components/LoginVideo";
 
 export const Login = () => {
 	return (
