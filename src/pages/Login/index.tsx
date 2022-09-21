@@ -4,7 +4,7 @@ import { LoginVideo } from "../../components/LoginVideo";
 
 export const Login = () => {
 	return (
-		<Box>
+		<Box w="100vw" h="100vh">
 			<LoginForm />
 			<LoginVideo />
 		</Box>

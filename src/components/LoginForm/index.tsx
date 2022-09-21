@@ -11,7 +11,7 @@ import {
 	Link,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import riotlogo from "../../Assets/Img/riotgameslogo.png";
+import riotlogo from "../../assets/img/riotgameslogo.png";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillApple, AiOutlineArrowRight } from "react-icons/ai";
 import { RiFacebookCircleFill } from "react-icons/ri";
