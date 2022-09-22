@@ -40,22 +40,67 @@ export const LoginVideo = () => {
 			<Flex justifyContent="flex-end" position="fixed" w="75%" zIndex="1">
 				{soundMuted ? (
 					<Button
-						w="40px"
-						h="25px"
+						w="35px"
+						h="35px"
 						bg="transparent"
-						fontSize="2xl"
-						p="5px 10px 0 10px"
+						mr="5"
+						shadow={[
+							"1px 1px 4px grey",
+							"1px 1px 4px grey",
+							"2px 2px 8px black",
+						]}
 						onClick={() => setSoundMuted(false)}
-						_hover={{
-							bg: "red",
-							filter: "opacity(0.3) drop-shadow(0 0 0 red)",
-						}}
+						_hover={{ bg: "transparent" }}
+						_focus={{ bg: "transparent" }}
 					>
-						<RiVolumeMuteFill fill="white" fontSize="20px" />
+						<RiVolumeMuteFill fill="white" />
+						<Box
+							shadow="2px 2px 8px black"
+							borderRadius="5px"
+							opacity="0.1"
+							_hover={{
+								bg: "grey.0",
+								opacity: "0.1",
+								filter: "blur(0)",
+								transition: "all ease 0.3s",
+							}}
+							position="absolute"
+							filter="blur(10px)"
+							w="100%"
+							h="100%"
+						/>
 					</Button>
 				) : (
-					<Button onClick={() => setSoundMuted(true)}>
-						<RiVolumeUpFill fill="white" fontSize="20px" />
+					<Button
+						w="35px"
+						h="35px"
+						bg="transparent"
+						mr="5"
+						shadow={[
+							"1px 1px 4px grey",
+							"1px 1px 4px grey",
+							"2px 2px 8px black",
+						]}
+						onClick={() => setSoundMuted(true)}
+						_hover={{ bg: "transparent" }}
+						_focus={{ bg: "transparent" }}
+					>
+						<RiVolumeUpFill fill="white" />
+						<Box
+							shadow="2px 2px 8px black"
+							borderRadius="5px"
+							opacity="0.1"
+							_hover={{
+								bg: "grey.0",
+								opacity: "0.1",
+								filter: "blur(0)",
+								transition: "all ease 0.3s",
+							}}
+							position="absolute"
+							filter="blur(10px)"
+							w="100%"
+							h="100%"
+						/>
 					</Button>
 				)}
 			</Flex>
@@ -72,12 +117,8 @@ export const LoginVideo = () => {
 
 			<Box
 				as="video"
-				position="absolute"
-				w="75%"
 				h="100%"
-				top="50%"
 				objectFit="cover"
-				transform="translate(0, -50%)"
 				zIndex="1"
 				animation={`${mymove} 3s linear`}
 				autoPlay
