@@ -11,7 +11,7 @@ interface videoItem {
 	id: number;
 }
 
-const mymove = keyframes`
+const bgTransition = keyframes`
   to {
     from {background: white;}
     to {background: black;}
@@ -23,16 +23,17 @@ export const LoginVideo = () => {
 	const [soundMuted, setSoundMuted] = useState(true);
 	const [randomNumber, setRandomNumber] = useState(random(videos));
 
-	let selected = videos[randomNumber].video;
-
 	function random(videos: videoItem[]) {
 		let randomGenerated = Math.floor(Math.random() * videos.length);
 		return randomGenerated;
 	}
 
+	let selected = videos[randomNumber].video;
+
 	const ended = () => {
 		refVideo.current.load();
 		refVideo.current.play();
+		refVideo.current.volume = 0.01;
 	};
 
 	return (
@@ -120,10 +121,11 @@ export const LoginVideo = () => {
 				h="100%"
 				objectFit="cover"
 				zIndex="1"
-				animation={`${mymove} 3s linear`}
+				animation={`${bgTransition} 3s ease all`}
 				autoPlay
 				ref={refVideo}
 				muted={soundMuted}
+				onLoadStart={() => (refVideo.current.volume = 0.01)}
 				onEnded={() => {
 					setRandomNumber(random(videos));
 					ended();
