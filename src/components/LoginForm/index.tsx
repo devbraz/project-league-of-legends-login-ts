@@ -9,6 +9,9 @@ import {
 	HStack,
 	Link,
 	useToast,
+	InputGroup,
+	InputLeftElement,
+	InputRightElement,
 } from "@chakra-ui/react";
 import { useState, useRef } from "react";
 import riotlogo from "../../assets/img/riotgameslogo.png";
@@ -38,8 +41,8 @@ export const LoginForm = () => {
 	const [userInputClick, setUserInputClick] = useState(false);
 	const [passwordInputClick, setPasswordInputClick] = useState(false);
 	const [checkboxInputClick, setCheckboxInputClick] = useState(false);
-	const [showPasswordIcon, setShowPasswordIcon] = useState(false);
-
+	const [show, setShow] = useState(false);
+	const handleShowPasswordClick = () => setShow(!show);
 	const handleSignIn = () => {
 		return toast({
 			position: "bottom",
@@ -93,26 +96,24 @@ export const LoginForm = () => {
 					>
 						Fazer login
 					</Text>
-					<Box w="100%" position="relative">
-						<Text
+					<InputGroup flexDir="column" w="100%">
+						<InputLeftElement
+							pointerEvents="none"
 							w="auto"
 							h="auto"
-							position="absolute"
 							fontSize={userInputClick ? "0.6rem" : "0.75rem"}
 							fontWeight={userInputClick ? "500" : "700"}
 							fontFamily="tertiary"
 							m={userInputClick ? "5px" : "18px"}
 							ml={userInputClick ? "11px" : "18px"}
 							transition="all 0.2s ease"
-							zIndex="1"
 							color={
 								userInputValueLength
 									? "login.infoModalHover"
 									: "login.inputText"
 							}
-						>
-							NOME DE USUÁRIO
-						</Text>
+							children={<Text>NOME DE USUÁRIO</Text>}
+						/>
 						<Input
 							ref={userInput}
 							defaultValue=""
@@ -174,26 +175,23 @@ export const LoginForm = () => {
 								</Text>
 							</Flex>
 						)}
-					</Box>
-					<Box w="100%" position="relative">
-						<Text
+					</InputGroup>
+					<InputGroup w="100%">
+						<InputLeftElement
+							pointerEvents="none"
 							w="auto"
 							h="auto"
-							position="absolute"
 							fontSize={passwordInputClick ? "0.6rem" : "0.75rem"}
 							fontWeight={passwordInputClick ? "500" : "700"}
 							fontFamily="tertiary"
 							m={passwordInputClick ? "5px" : "18px"}
 							ml={passwordInputClick ? "11px" : "18px"}
 							transition="all 0.2s ease"
-							zIndex="1"
-						>
-							SENHA
-						</Text>
+							children={<Text>SENHA</Text>}
+						/>
 						<Input
 							ref={passwordInput}
-							defaultValue=""
-							type="password"
+							type={show ? "text" : "password"}
 							w="100%"
 							border={`2px solid ${theme.colors.login.input}`}
 							borderColor="none"
@@ -204,39 +202,40 @@ export const LoginForm = () => {
 							bg="login.input"
 							outline="none"
 							boxShadow="none"
+							_hover={{
+								border: "login.buttonAppleHover",
+								bg: "login.inputHover",
+							}}
 							_focusVisible={{ boder: "none" }}
 							_focus={{
 								outline: "none",
 								bg: "login.white",
 								border: `2px solid ${theme.colors.login.buttonAppleHover}`,
 							}}
-							_hover={{
-								borderColor: "none",
-								bg: "login.inputHover",
-							}}
 							onBlur={() => {
 								passwordInputValue.length > 0
 									? setPasswordInputClick(true)
 									: setPasswordInputClick(false);
-								setShowPasswordIcon(false);
 							}}
 							onFocus={() => {
 								setPasswordInputClick(true);
-								setShowPasswordIcon(true);
 							}}
 							onChange={() =>
 								setPasswordInputValue(passwordInput.current.value)
 							}
 						/>
-						{showPasswordIcon && (
-							<Box position="absolute" top="30%" right="5%" zIndex="2">
-								<IoIosEyeOff
-									fontSize="25px"
-									color={`${theme.colors.login.black}`}
-								/>
-							</Box>
+						{passwordInputClick && (
+							<InputRightElement top="30%" right="5%">
+								<Box cursor="pointer" onClick={handleShowPasswordClick}>
+									{show ? (
+										<IoIosEye fontSize="25px" color="black" />
+									) : (
+										<IoIosEyeOff fontSize="25px" color="black" />
+									)}
+								</Box>
+							</InputRightElement>
 						)}
-					</Box>
+					</InputGroup>
 					<HStack w="100%" justifyContent="space-between">
 						<Button
 							w="30%"
