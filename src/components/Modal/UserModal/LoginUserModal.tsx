@@ -8,6 +8,7 @@ import {
 	Text,
 	useToast,
 	VStack,
+	useBreakpointValue,
 } from "@chakra-ui/react";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
@@ -23,7 +24,7 @@ export const LoginUserModal = () => {
 			render: () => (
 				<Flex
 					h="80px"
-					w="500px"
+					w={["100%", "500px"]}
 					bg="yellow.500"
 					borderRadius="5px"
 					p="10px"
@@ -39,6 +40,10 @@ export const LoginUserModal = () => {
 			),
 		});
 	};
+	const isWideVersion = useBreakpointValue({
+		base: false,
+		md: true,
+	});
 	return (
 		<>
 			<Flex flexDir="column" alignItems="center" mt="40px" mr="40px" zIndex="1">
@@ -55,7 +60,14 @@ export const LoginUserModal = () => {
 					onClick={onOpen}
 					zIndex="1"
 				>
-					<FaUserAlt fill={`${theme.colors.login.white}`} fontSize="25px" />
+					<FaUserAlt
+						fill={
+							isWideVersion
+								? `${theme.colors.login.white}`
+								: `${theme.colors.login.black}`
+						}
+						fontSize="25px"
+					/>
 					<Box
 						position="absolute"
 						w="100%"
@@ -64,7 +76,7 @@ export const LoginUserModal = () => {
 						shadow="2px 2px 8px black"
 						opacity="0.2"
 						_hover={{
-							bg: "login.input",
+							bg: ["login.black", "login.black", "login.input"],
 							opacity: "0.1",
 							transition: "all ease 0.7s",
 						}}
@@ -78,8 +90,9 @@ export const LoginUserModal = () => {
 					display="flex"
 					h="200px"
 					w="270px"
-					top="40px"
-					right="110px"
+					top={["120px", "120px", "40px"]}
+					right={isWideVersion ? "110px" : undefined}
+					left={isWideVersion ? undefined : "0"}
 					p="35px"
 					bg="login.userModalBg"
 					fontFamily="tertiary"
