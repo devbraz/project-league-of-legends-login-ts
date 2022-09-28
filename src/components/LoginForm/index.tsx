@@ -23,7 +23,7 @@ import {
 	BsFillExclamationCircleFill,
 	BsFillExclamationDiamondFill,
 } from "react-icons/bs";
-import { LoginVersionModal } from "../Modal/LoginVersionModal";
+import { LoginVersionModal } from "../Modal/VersionModal/LoginVersionModal";
 import { theme } from "../../styles/theme";
 
 // interface SignInData {
@@ -70,6 +70,7 @@ export const LoginForm = () => {
 		<Flex w="25vw" h="100vh" justifyContent="center">
 			<VStack
 				as="form"
+				position="relative"
 				// onSubmit={() => handleSignIn}
 				w="75%"
 				justifyContent="space-between"
@@ -435,27 +436,30 @@ export const LoginForm = () => {
 
 					<Box mt="6vh">
 						<Flex flexDir="column">
-							<Link
-								fontWeight="700"
-								href="#"
-								_hover={{ textDecor: "none", color: "login.black" }}
-								onClick={handleSignIn}
-							>
-								NÃO CONSEGUE INICIAR SESSÃO?
-							</Link>
-							<Link
-								fontWeight="700"
-								href="#"
-								_hover={{ textDecor: "none", color: "login.black" }}
-								onClick={handleSignIn}
-							>
-								CRIAR CONTA
-							</Link>
+							<Box>
+								<Link
+									fontWeight="700"
+									href="#"
+									_hover={{ textDecor: "none", color: "login.black" }}
+									onClick={handleSignIn}
+								>
+									NÃO CONSEGUE INICIAR SESSÃO?
+								</Link>
+							</Box>
+							<Box>
+								<Link
+									fontWeight="700"
+									href="#"
+									_hover={{ textDecor: "none", color: "login.black" }}
+									onClick={handleSignIn}
+								>
+									CRIAR CONTA
+								</Link>
+							</Box>
 						</Flex>
-
-						<LoginVersionModal />
 					</Box>
 				</Box>
+				<LoginVersionModal />
 			</VStack>
 		</Flex>
 	);

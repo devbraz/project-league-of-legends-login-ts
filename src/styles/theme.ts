@@ -21,6 +21,7 @@ export const theme = extendTheme({
 			input: "#e6e6e6",
 			inputHover: "hsl(0, 0%, 89%)",
 			inputText: "hsl(0, 0%, 65%)",
+			modalText: "hsl(0, 0%, 55%)",
 			modalBg: "#595959",
 			userModalBg: "hsl(0, 0%, 10%)",
 			userModalBgHover: "hsl(0, 0%, 15%)",
