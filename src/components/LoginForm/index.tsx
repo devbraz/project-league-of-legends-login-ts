@@ -12,6 +12,7 @@ import {
 	InputGroup,
 	InputLeftElement,
 	InputRightElement,
+	useBreakpointValue,
 } from "@chakra-ui/react";
 import { useState, useRef } from "react";
 import riotlogo from "../../assets/img/riotgameslogo.png";
@@ -53,7 +54,7 @@ export const LoginForm = () => {
 					p="10px"
 					bg="yellow.500"
 					h="80px"
-					w="500px"
+					w={["100%", "500px"]}
 					borderRadius="5px"
 					alignItems="center"
 				>
@@ -66,17 +67,26 @@ export const LoginForm = () => {
 			),
 		});
 	};
+	// const isWideVersion = useBreakpointValue({
+	// 	base: false,
+	// 	md: true,
+	// });
 	return (
-		<Flex w="25vw" h="100vh" justifyContent="center">
+		<Flex
+			w={["100%", "100%", "25%"]}
+			minW={["0", "450px"]}
+			h="100%"
+			justifyContent="center"
+		>
 			<VStack
 				as="form"
 				position="relative"
 				// onSubmit={() => handleSignIn}
-				w="75%"
+				w={["90%", "65%", "75%"]}
 				justifyContent="space-between"
 				flexDir="column"
-				pt="10vh"
-				pb="5vh"
+				pt="10%"
+				pb="5%"
 			>
 				<Image src={riotlogo} alt="Riot Logo" w="125px" h="35px" />
 
@@ -97,7 +107,7 @@ export const LoginForm = () => {
 					>
 						Fazer login
 					</Text>
-					<InputGroup flexDir="column" w="100%">
+					<InputGroup flexDir="column" w="100%" zIndex="0">
 						<InputLeftElement
 							pointerEvents="none"
 							w="auto"
@@ -177,7 +187,7 @@ export const LoginForm = () => {
 							</Flex>
 						)}
 					</InputGroup>
-					<InputGroup w="100%">
+					<InputGroup w="100%" zIndex="0">
 						<InputLeftElement
 							pointerEvents="none"
 							w="auto"
@@ -255,14 +265,14 @@ export const LoginForm = () => {
 											p="10px"
 											bg="red.500"
 											h="80px"
-											w="500px"
+											w={["100%", "500px"]}
 											borderRadius="5px"
 											alignItems="center"
 										>
 											<BsFillExclamationCircleFill fontSize="50px" />
 											<Flex flexDir="column" ml="10px">
 												<Text fontWeight="700">Error...</Text>
-												<Text>
+												<Text fontSize={["0.7rem", "1rem"]}>
 													Recurso de entrar com a conta do facebook está
 													atualmente indisponível.
 												</Text>
@@ -291,14 +301,14 @@ export const LoginForm = () => {
 											p="10px"
 											bg="red.500"
 											h="80px"
-											w="500px"
+											w={["100%", "500px"]}
 											borderRadius="5px"
 											alignItems="center"
 										>
 											<BsFillExclamationCircleFill fontSize="50px" />
 											<Flex flexDir="column" ml="10px">
 												<Text fontWeight="700">Error...</Text>
-												<Text>
+												<Text fontSize={["0.7rem", "1rem"]}>
 													Recurso de entrar com a conta do google está
 													atualmente indisponível.
 												</Text>
@@ -327,14 +337,14 @@ export const LoginForm = () => {
 											p="10px"
 											bg="red.500"
 											h="80px"
-											w="500px"
+											w={["100%", "500px"]}
 											borderRadius="5px"
 											alignItems="center"
 										>
 											<BsFillExclamationCircleFill fontSize="50px" />
 											<Flex flexDir="column" ml="10px">
 												<Text fontWeight="700">Error...</Text>
-												<Text>
+												<Text fontSize={["0.7rem", "1rem"]}>
 													Recurso de entrar com a conta da apple está atualmente
 													indisponível.
 												</Text>
@@ -434,7 +444,7 @@ export const LoginForm = () => {
 						</Button>
 					)}
 
-					<Box mt="6vh">
+					<Box mt="6%">
 						<Flex flexDir="column">
 							<Box>
 								<Link

@@ -1,12 +1,16 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex, useBreakpointValue } from "@chakra-ui/react";
 import { LoginForm } from "../../components/LoginForm";
 import { LoginVideo } from "../../components/LoginVideo";
 
 export const Login = () => {
+	const isWideVersion = useBreakpointValue({
+		base: false,
+		md: true,
+	});
 	return (
-		<Flex w="100vw" h="100vh" flexDir="row">
+		<Flex w="100%" h="100%" flexDir="row">
 			<LoginForm />
-			<LoginVideo />
+			{isWideVersion && <LoginVideo />}
 		</Flex>
 	);
 };

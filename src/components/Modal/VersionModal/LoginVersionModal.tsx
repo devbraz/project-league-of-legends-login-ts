@@ -18,8 +18,8 @@ export const LoginVersionModal = () => {
 			<Button
 				position="absolute"
 				alignSelf="end"
-				bottom="45px"
-				left="17vw"
+				bottom={["3%", "3%", "45px"]}
+				left={["75%", "65%", "300px"]}
 				m="0"
 				fontSize="0.7rem"
 				fontFamily="tertiary"
@@ -34,11 +34,12 @@ export const LoginVersionModal = () => {
 			<Modal isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />
 				<ModalContent
-					w="600px"
-					h="400px"
+					w={["100%", "600px", "600px"]}
+					h={["100%", "400px", "400px"]}
 					borderRadius="5px"
-					top="28%"
+					top={["0", "28%", "28%"]}
 					shadow={`rgba(0, 0, 0, 0.76) 0px 22px 70px 4px`}
+					zIndex="3"
 				>
 					<Flex justifyContent="flex-end">
 						<Button
