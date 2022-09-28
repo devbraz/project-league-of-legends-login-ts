@@ -8,6 +8,7 @@ import {
 	Text,
 	Link,
 	useToast,
+	useBreakpointValue,
 } from "@chakra-ui/react";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { FaExclamation } from "react-icons/fa";
@@ -24,7 +25,7 @@ export const LoginInfoModal = () => {
 			render: () => (
 				<Flex
 					h="80px"
-					w="500px"
+					w={["100%", "500px"]}
 					bg="yellow.500"
 					borderRadius="5px"
 					p="10px"
@@ -40,31 +41,63 @@ export const LoginInfoModal = () => {
 			),
 		});
 	};
+	const isWideVersion = useBreakpointValue({
+		base: false,
+		md: true,
+	});
 	return (
 		<>
 			<Flex flexDir="column" alignItems="center" mt="45px" ml="40px" zIndex="1">
 				<Button
+					position="relative"
 					p="10px"
-					bg={isOpen ? "login.infoModalHover" : "login.infoModal"}
+					bg={
+						isOpen
+							? ["transparent", "transparent", "login.infoModalHover"]
+							: ["transparent", "transparent", "login.infoModal"]
+					}
 					borderRadius="3px"
-					shadow="1px 1px rgba(0, 0, 0, 0.11),2px 2px rgba(0, 0, 0, 0.11), 4px 4px rgba(0, 0, 0, 0.11)"
+					shadow={["1px 1px 4px grey", "1px 1px 4px grey", "2px 2px 8px black"]}
 					transform="rotate(45deg)"
-					_hover={{ bg: "login.infoModalHover" }}
-					_focus={{ bg: "login.infoModalHover" }}
-					onMouseEnter={onOpen}
+					opacity={["0.7", "0.7", "1"]}
+					transition={!isWideVersion ? "all ease 0.4s" : undefined}
+					_hover={{
+						bg: ["transparent", "transparent", "login.infoModalHover"],
+						opacity: "1",
+					}}
+					_focus={{
+						bg: ["transparent", "transparent", "login.infoModalHover"],
+					}}
+					onMouseEnter={isWideVersion ? onOpen : undefined}
+					onClick={!isWideVersion ? onOpen : undefined}
 				>
 					<Box transform="rotate(-45deg)">
 						<FaExclamation fontSize="20px" color="black" />
 					</Box>
+					{!isWideVersion && (
+						<Box
+							position="absolute"
+							w="100%"
+							h="100%"
+							shadow="2px 2px 8px black"
+							opacity="0.3"
+							_hover={{
+								bg: ["login.black", "login.black", "login.input"],
+								opacity: "0.1",
+								transition: "all ease 0.7s",
+							}}
+						/>
+					)}
 				</Button>
 			</Flex>
 			<Modal onClose={onClose} isOpen={isOpen}>
 				<ModalContent
 					display="flex"
 					position="absolute"
-					h="50vh"
-					w="400px"
-					left={["50vw", "32vw", "30vw"]}
+					h={["75%", "75%", "50%"]}
+					w={["100%", "100%", "400px"]}
+					left={["0", "0", "300px", "560px"]}
+					top={["120px", "120px", "0"]}
 					bg="login.bgForm"
 					borderRadius="5px"
 					onMouseLeave={onClose}
@@ -75,7 +108,7 @@ export const LoginInfoModal = () => {
 						w="40px"
 						h="40px"
 						left="-5px"
-						top="30.5px"
+						top="45px"
 						bg="login.bgForm"
 						borderRadius="3px"
 						transform="rotate(45deg)"

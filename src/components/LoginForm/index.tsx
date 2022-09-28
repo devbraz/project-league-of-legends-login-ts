@@ -26,6 +26,7 @@ import {
 } from "react-icons/bs";
 import { LoginVersionModal } from "../Modal/VersionModal/LoginVersionModal";
 import { theme } from "../../styles/theme";
+import { SlideDrawerMobile } from "../Modal/SlideDrawerMobile/SlideDrawerMobile";
 
 // interface SignInData {
 // 	user: string;
@@ -67,17 +68,19 @@ export const LoginForm = () => {
 			),
 		});
 	};
-	// const isWideVersion = useBreakpointValue({
-	// 	base: false,
-	// 	md: true,
-	// });
+	const isWideVersion = useBreakpointValue({
+		base: false,
+		md: true,
+	});
 	return (
 		<Flex
+			position="relative"
 			w={["100%", "100%", "25%"]}
 			minW={["0", "450px"]}
 			h="100%"
 			justifyContent="center"
 		>
+			{!isWideVersion && <SlideDrawerMobile />}
 			<VStack
 				as="form"
 				position="relative"
@@ -85,8 +88,9 @@ export const LoginForm = () => {
 				w={["90%", "65%", "75%"]}
 				justifyContent="space-between"
 				flexDir="column"
-				pt="10%"
-				pb="5%"
+				h="100vh"
+				pt="20%"
+				pb="10%"
 			>
 				<Image src={riotlogo} alt="Riot Logo" w="125px" h="35px" />
 
@@ -95,7 +99,6 @@ export const LoginForm = () => {
 					flexDir="column"
 					alignItems="center"
 					w="100%"
-					h="25%"
 					spacing="20px"
 				>
 					<Text

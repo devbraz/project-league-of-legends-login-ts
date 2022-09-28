@@ -19,7 +19,7 @@ export const LoginVersionModal = () => {
 				position="absolute"
 				alignSelf="end"
 				bottom={["3%", "3%", "45px"]}
-				left={["75%", "65%", "300px"]}
+				left={["75%", "65%", "330px"]}
 				m="0"
 				fontSize="0.7rem"
 				fontFamily="tertiary"
