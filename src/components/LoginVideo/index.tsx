@@ -4,7 +4,7 @@ import { Box, Flex, Button, keyframes } from "@chakra-ui/react";
 
 import { RiVolumeUpFill, RiVolumeMuteFill } from "react-icons/ri";
 import { LoginInfoModal } from "../Modal/InfoModal/LoginInfoModal";
-import { LoginUserModal } from "../Modal/LoginUserModal";
+import { LoginUserModal } from "../Modal/UserModal/LoginUserModal";
 
 interface videoItem {
 	video: string;
