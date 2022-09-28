@@ -23,12 +23,12 @@ export const LoginInfoModal = () => {
 			duration: 2000,
 			render: () => (
 				<Flex
-					color="white"
-					p="10px"
-					bg="yellow.500"
 					h="80px"
 					w="500px"
+					bg="yellow.500"
 					borderRadius="5px"
+					p="10px"
+					color="white"
 					alignItems="center"
 				>
 					<BsFillExclamationDiamondFill fontSize="50px" />
@@ -42,7 +42,7 @@ export const LoginInfoModal = () => {
 	};
 	return (
 		<>
-			<Flex flexDir="column" alignItems="center" mt="30px" ml="30px" zIndex="1">
+			<Flex flexDir="column" alignItems="center" mt="45px" ml="40px" zIndex="1">
 				<Button
 					p="10px"
 					bg={isOpen ? "login.infoModalHover" : "login.infoModal"}
@@ -117,14 +117,15 @@ export const LoginInfoModal = () => {
 							);
 						})}
 					</Box>
-					<Link
-						fontWeight="700"
-						m="10px 0 25px 50px"
-						_hover={{ textDecor: "none", color: "login.black" }}
-						onClick={handleLink}
-					>
-						MAIS DETALHES
-					</Link>
+					<Box m="10px 0 25px 50px">
+						<Link
+							fontWeight="700"
+							_hover={{ textDecor: "none", color: "login.black" }}
+							onClick={handleLink}
+						>
+							MAIS DETALHES
+						</Link>
+					</Box>
 				</ModalContent>
 			</Modal>
 		</>
