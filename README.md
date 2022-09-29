@@ -44,7 +44,7 @@ Basically you need to access the vercel link to see it, nothing else.
 
 ## Project Status
 
-Project is: _in progress_
+Project is: _finished_
 
 ## Room for Improvement
 
