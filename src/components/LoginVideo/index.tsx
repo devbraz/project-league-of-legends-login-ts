@@ -27,6 +27,7 @@ export const LoginVideo = () => {
 	};
 
 	const refVideo = useRef<any>(null);
+
 	const [soundMuted, setSoundMuted] = useState(true);
 	const [randomNumber, setRandomNumber] = useState(randomVideo(videos));
 
