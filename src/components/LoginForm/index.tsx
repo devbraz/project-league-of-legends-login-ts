@@ -14,8 +14,14 @@ import {
 	InputRightElement,
 	useBreakpointValue,
 } from "@chakra-ui/react";
+
 import { useState, useRef } from "react";
+
 import riotlogo from "../../assets/img/riotgameslogo.png";
+import { LoginVersionModal } from "../Modal/VersionModal/LoginVersionModal";
+import { theme } from "../../styles/theme";
+import { SlideDrawerMobile } from "../Modal/SlideDrawerMobile/SlideDrawerMobile";
+
 import { FcGoogle } from "react-icons/fc";
 import { AiFillApple, AiOutlineArrowRight } from "react-icons/ai";
 import { RiFacebookCircleFill } from "react-icons/ri";
@@ -24,19 +30,12 @@ import {
 	BsFillExclamationCircleFill,
 	BsFillExclamationDiamondFill,
 } from "react-icons/bs";
-import { LoginVersionModal } from "../Modal/VersionModal/LoginVersionModal";
-import { theme } from "../../styles/theme";
-import { SlideDrawerMobile } from "../Modal/SlideDrawerMobile/SlideDrawerMobile";
-
-// interface SignInData {
-// 	user: string;
-// 	password: string;
-// }
 
 export const LoginForm = () => {
 	const toast = useToast();
 	const userInput = useRef<any>();
 	const passwordInput = useRef<any>();
+
 	const [userInputValueLength, setUserInputValueLength] = useState(false);
 	const [userInputValue, setUserInputValue] = useState("");
 	const [passwordInputValue, setPasswordInputValue] = useState("");
@@ -44,6 +43,7 @@ export const LoginForm = () => {
 	const [passwordInputClick, setPasswordInputClick] = useState(false);
 	const [checkboxInputClick, setCheckboxInputClick] = useState(false);
 	const [show, setShow] = useState(false);
+
 	const handleShowPasswordClick = () => setShow(!show);
 	const handleSignIn = () => {
 		return toast({
@@ -51,13 +51,13 @@ export const LoginForm = () => {
 			duration: 2000,
 			render: () => (
 				<Flex
-					color="white"
+					w={["100%", "500px"]}
+					h="80px"
 					p="10px"
 					bg="yellow.500"
-					h="80px"
-					w={["100%", "500px"]}
-					borderRadius="5px"
 					alignItems="center"
+					color="white"
+					borderRadius="5px"
 				>
 					<BsFillExclamationDiamondFill fontSize="50px" />
 					<Flex flexDir="column" ml="10px">
@@ -68,71 +68,74 @@ export const LoginForm = () => {
 			),
 		});
 	};
+
 	const isWideVersion = useBreakpointValue({
 		base: false,
 		md: true,
 	});
+
 	return (
 		<Flex
 			position="relative"
 			w={["100%", "100%", "25%"]}
-			minW={["0", "450px"]}
 			h="100%"
+			minW={["0", "450px"]}
 			justifyContent="center"
 		>
 			{!isWideVersion && <SlideDrawerMobile />}
 			<VStack
 				as="form"
 				position="relative"
-				// onSubmit={() => handleSignIn}
 				w={["90%", "65%", "75%"]}
-				justifyContent="space-between"
-				flexDir="column"
 				h="100vh"
 				pt="20%"
 				pb="10%"
+				justifyContent="space-between"
+				flexDir="column"
 			>
 				<Image src={riotlogo} alt="Riot Logo" w="125px" h="35px" />
 
 				<VStack
+					w="100%"
+					spacing="20px"
 					justifyContent="center"
 					flexDir="column"
 					alignItems="center"
-					w="100%"
-					spacing="20px"
 				>
 					<Text
+						mb="10px"
 						color="login.black"
 						fontSize="1.5rem"
 						fontWeight="600"
 						fontFamily="tertiary"
-						mb="10px"
 					>
 						Fazer login
 					</Text>
 					<InputGroup flexDir="column" w="100%" zIndex="0">
 						<InputLeftElement
-							pointerEvents="none"
 							w="auto"
 							h="auto"
-							fontSize={userInputClick ? "0.6rem" : "0.75rem"}
-							fontWeight={userInputClick ? "500" : "700"}
-							fontFamily="tertiary"
 							m={userInputClick ? "5px" : "18px"}
 							ml={userInputClick ? "11px" : "18px"}
-							transition="all 0.2s ease"
 							color={
 								userInputValueLength
 									? "login.infoModalHover"
 									: "login.inputText"
 							}
+							fontSize={userInputClick ? "0.6rem" : "0.75rem"}
+							fontWeight={userInputClick ? "500" : "700"}
+							fontFamily="tertiary"
+							pointerEvents="none"
+							transition="all 0.2s ease"
 							children={<Text>NOME DE USUÁRIO</Text>}
 						/>
 						<Input
 							ref={userInput}
-							defaultValue=""
 							type="text"
+							defaultValue=""
 							w="100%"
+							p="25px 10px 10px 10px"
+							bg={userInputValueLength ? "login.errorInputBg" : "login.input"}
 							border={
 								userInputValueLength
 									? `2px solid ${theme.colors.login.errorInputBorder}`
@@ -140,10 +143,8 @@ export const LoginForm = () => {
 							}
 							borderColor="none"
 							borderRadius="5px"
-							fontWeight="700"
 							color="login.black"
-							padding="25px 10px 10px 10px"
-							bg={userInputValueLength ? "login.errorInputBg" : "login.input"}
+							fontWeight="700"
 							outline="none"
 							boxShadow="none"
 							_focusVisible={{ boder: "none" }}
@@ -192,14 +193,14 @@ export const LoginForm = () => {
 					</InputGroup>
 					<InputGroup w="100%" zIndex="0">
 						<InputLeftElement
-							pointerEvents="none"
 							w="auto"
 							h="auto"
+							m={passwordInputClick ? "5px" : "18px"}
+							ml={passwordInputClick ? "11px" : "18px"}
 							fontSize={passwordInputClick ? "0.6rem" : "0.75rem"}
 							fontWeight={passwordInputClick ? "500" : "700"}
 							fontFamily="tertiary"
-							m={passwordInputClick ? "5px" : "18px"}
-							ml={passwordInputClick ? "11px" : "18px"}
+							pointerEvents="none"
 							transition="all 0.2s ease"
 							children={<Text>SENHA</Text>}
 						/>
@@ -207,13 +208,13 @@ export const LoginForm = () => {
 							ref={passwordInput}
 							type={show ? "text" : "password"}
 							w="100%"
+							p="25px 10px 10px 10px"
+							bg="login.input"
 							border={`2px solid ${theme.colors.login.input}`}
 							borderColor="none"
 							borderRadius="5px"
-							fontWeight="700"
 							color="login.black"
-							padding="25px 10px 10px 10px"
-							bg="login.input"
+							fontWeight="700"
 							outline="none"
 							boxShadow="none"
 							_hover={{
@@ -254,23 +255,23 @@ export const LoginForm = () => {
 						<Button
 							w="30%"
 							h="40px"
-							borderRadius="5px"
 							bg="login.buttonFacebook"
-							_hover={{ bg: "login.buttonFacebookHover" }}
 							border={`2px solid ${theme.colors.login.bgForm}`}
+							borderRadius="5px"
+							_hover={{ bg: "login.buttonFacebookHover" }}
 							onClick={() =>
 								toast({
 									position: "bottom",
 									duration: 2000,
 									render: () => (
 										<Flex
-											color="white"
+											w={["100%", "500px"]}
+											h="80px"
 											p="10px"
 											bg="red.500"
-											h="80px"
-											w={["100%", "500px"]}
 											borderRadius="5px"
 											alignItems="center"
+											color="white"
 										>
 											<BsFillExclamationCircleFill fontSize="50px" />
 											<Flex flexDir="column" ml="10px">
@@ -290,23 +291,23 @@ export const LoginForm = () => {
 						<Button
 							w="30%"
 							h="40px"
-							borderRadius="5px"
 							bg="login.white"
-							_hover={{ bg: "login.buttonGoogleHover" }}
 							border={`2px solid ${theme.colors.login.inputHover}`}
+							borderRadius="5px"
+							_hover={{ bg: "login.buttonGoogleHover" }}
 							onClick={() =>
 								toast({
 									position: "bottom",
 									duration: 2000,
 									render: () => (
 										<Flex
-											color="white"
+											w={["100%", "500px"]}
+											h="80px"
 											p="10px"
 											bg="red.500"
-											h="80px"
-											w={["100%", "500px"]}
 											borderRadius="5px"
 											alignItems="center"
+											color="white"
 										>
 											<BsFillExclamationCircleFill fontSize="50px" />
 											<Flex flexDir="column" ml="10px">
@@ -326,23 +327,23 @@ export const LoginForm = () => {
 						<Button
 							w="30%"
 							h="40px"
-							borderRadius="5px"
 							bg="login.black"
-							_hover={{ bg: "login.buttonAppleHover" }}
 							border={`2px solid ${theme.colors.login.bgForm}`}
+							borderRadius="5px"
+							_hover={{ bg: "login.buttonAppleHover" }}
 							onClick={() =>
 								toast({
 									position: "bottom",
 									duration: 2000,
 									render: () => (
 										<Flex
-											color="white"
+											w={["100%", "500px"]}
+											h="80px"
 											p="10px"
 											bg="red.500"
-											h="80px"
-											w={["100%", "500px"]}
 											borderRadius="5px"
 											alignItems="center"
+											color="white"
 										>
 											<BsFillExclamationCircleFill fontSize="50px" />
 											<Flex flexDir="column" ml="10px">
@@ -361,26 +362,26 @@ export const LoginForm = () => {
 						</Button>
 					</HStack>
 					<Flex
+						position="relative"
 						w="100%"
 						flexDir="row"
 						alignContent="flex-start"
 						alignItems="flex-end"
-						position="relative"
 					>
 						{checkboxInputClick && (
 							<Box
 								display="block"
 								position="absolute"
-								width="6px"
-								height="10px"
+								w="6px"
+								h="10px"
+								m="2.5px 0 0 5px"
+								bottom="7px"
+								left="2px"
 								border="2px solid white"
 								borderLeft="none"
 								borderTop="none"
-								m="2.5px 0 0 5px"
 								transform="rotate(45deg)"
 								zIndex="1"
-								bottom="7px"
-								left="2px"
 								onClick={() => {
 									checkboxInputClick
 										? setCheckboxInputClick(false)
@@ -393,9 +394,9 @@ export const LoginForm = () => {
 							type="checkbox"
 							w="20px"
 							h="20px"
-							borderRadius="5px"
 							bg={checkboxInputClick ? "login.buttonSubmit" : "login.input"}
 							border="none"
+							borderRadius="5px"
 							onClick={() => {
 								checkboxInputClick
 									? setCheckboxInputClick(false)
@@ -411,10 +412,9 @@ export const LoginForm = () => {
 						<Button
 							w="75px"
 							h="75px"
-							borderRadius="25px"
-							// type="submit"
 							bg="login.buttonSubmit"
 							border={`2px solid ${theme.colors.login.buttonSubmit}`}
+							borderRadius="25px"
 							_hover={{
 								bg: "login.buttonSubmitHover",
 								border: `2px solid ${theme.colors.login.buttonSubmitHover}`,
@@ -432,12 +432,12 @@ export const LoginForm = () => {
 						</Button>
 					) : (
 						<Button
+							type="submit"
 							w="75px"
 							h="75px"
-							borderRadius="25px"
-							type="submit"
 							bg="login.bgForm"
 							border={`2px solid ${theme.colors.login.version}`}
+							borderRadius="25px"
 							disabled
 						>
 							<AiOutlineArrowRight
@@ -451,8 +451,8 @@ export const LoginForm = () => {
 						<Flex flexDir="column">
 							<Box>
 								<Link
-									fontWeight="700"
 									href="#"
+									fontWeight="700"
 									_hover={{ textDecor: "none", color: "login.black" }}
 									onClick={handleSignIn}
 								>
@@ -461,8 +461,8 @@ export const LoginForm = () => {
 							</Box>
 							<Box>
 								<Link
-									fontWeight="700"
 									href="#"
+									fontWeight="700"
 									_hover={{ textDecor: "none", color: "login.black" }}
 									onClick={handleSignIn}
 								>
