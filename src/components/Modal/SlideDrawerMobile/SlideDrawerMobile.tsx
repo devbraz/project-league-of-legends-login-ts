@@ -7,7 +7,6 @@ import {
 	HStack,
 	Image,
 } from "@chakra-ui/react";
-
 import { theme } from "../../../styles/theme";
 import { LoginInfoModal } from "../InfoModal/LoginInfoModal";
 import { LoginUserModal } from "../UserModal/LoginUserModal";
