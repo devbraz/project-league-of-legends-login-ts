@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
-import { videos } from "./videos";
+
 import { Box, Flex, Button, keyframes } from "@chakra-ui/react";
 
-import { RiVolumeUpFill, RiVolumeMuteFill } from "react-icons/ri";
+import { videos } from "./videos";
 import { LoginInfoModal } from "../Modal/InfoModal/LoginInfoModal";
 import { LoginUserModal } from "../Modal/UserModal/LoginUserModal";
+
+import { RiVolumeUpFill, RiVolumeMuteFill } from "react-icons/ri";
 
 interface videoItem {
 	video: string;
@@ -23,13 +25,13 @@ export const LoginVideo = () => {
 		let randomGenerated = Math.floor(Math.random() * videos.length);
 		return randomGenerated;
 	};
+
 	const refVideo = useRef<any>(null);
 	const [soundMuted, setSoundMuted] = useState(true);
 	const [randomNumber, setRandomNumber] = useState(randomVideo(videos));
+
 	const handleSoundChange = () => setSoundMuted(!soundMuted);
-
 	let selected = videos[randomNumber].video;
-
 	const ended = () => {
 		refVideo.current.load();
 		refVideo.current.play();
@@ -43,8 +45,8 @@ export const LoginVideo = () => {
 					w="35px"
 					h="35px"
 					bg="transparent"
-					borderRadius="5px"
 					m="5px 5px 0 0"
+					borderRadius="5px"
 					shadow={["1px 1px 4px grey", "1px 1px 4px grey", "2px 2px 8px black"]}
 					_hover={{ bg: "transparent" }}
 					_focus={{ bg: "transparent" }}

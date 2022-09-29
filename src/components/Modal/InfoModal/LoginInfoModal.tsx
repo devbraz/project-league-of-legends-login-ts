@@ -10,14 +10,17 @@ import {
 	useToast,
 	useBreakpointValue,
 } from "@chakra-ui/react";
+
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { FaExclamation } from "react-icons/fa";
 import { MdAccessTimeFilled } from "react-icons/md";
+
 import { InfoData } from "./InfoData";
 
 export const LoginInfoModal = () => {
 	const toast = useToast();
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
 	const handleLink = () => {
 		return toast({
 			position: "bottom",
@@ -41,10 +44,12 @@ export const LoginInfoModal = () => {
 			),
 		});
 	};
+
 	const isWideVersion = useBreakpointValue({
 		base: false,
 		md: true,
 	});
+
 	return (
 		<>
 			<Flex flexDir="column" alignItems="center" mt="45px" ml="40px" zIndex="1">
@@ -96,24 +101,26 @@ export const LoginInfoModal = () => {
 					position="absolute"
 					h={["75%", "75%", "50%"]}
 					w={["100%", "100%", "400px"]}
-					left={["0", "0", "300px", "560px"]}
-					top={["120px", "120px", "0"]}
+					left={["0", "0", "290px", "575px"]}
+					top={["120px", "120px", "120px", "0"]}
 					bg="login.bgForm"
 					borderRadius="5px"
-					onMouseLeave={onClose}
 					fontFamily="tertiary"
+					onMouseLeave={onClose}
 				>
-					<Box
-						position="absolute"
-						w="40px"
-						h="40px"
-						left="-5px"
-						top="45px"
-						bg="login.bgForm"
-						borderRadius="3px"
-						transform="rotate(45deg)"
-						zIndex="-1"
-					/>
+					{isWideVersion && (
+						<Box
+							position="absolute"
+							w="40px"
+							h="40px"
+							left={["0", "0", "50%", "-5px"]}
+							top={["0", "0", "-5px", "45px"]}
+							bg="login.bgForm"
+							borderRadius="3px"
+							transform="rotate(45deg)"
+							zIndex="-1"
+						/>
+					)}
 					<Box
 						overflowX="auto"
 						p="50px"

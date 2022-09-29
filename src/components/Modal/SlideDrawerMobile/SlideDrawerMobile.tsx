@@ -7,6 +7,7 @@ import {
 	HStack,
 	Image,
 } from "@chakra-ui/react";
+
 import { theme } from "../../../styles/theme";
 import { LoginInfoModal } from "../InfoModal/LoginInfoModal";
 import { LoginUserModal } from "../UserModal/LoginUserModal";
@@ -18,52 +19,52 @@ export const SlideDrawerMobile = () => {
 		<>
 			<Box
 				position="fixed"
+				w="25px"
+				h="60px"
 				top="50px"
 				left="0"
 				m="0"
-				w="25px"
-				h="60px"
-				onClick={onOpen}
 				bg="transparent"
+				onClick={onOpen}
 			>
 				<Box
-					borderBottomRightRadius="10px"
-					borderTopRightRadius="10px"
 					w="5px"
 					h="60px"
 					bg="login.buttonSubmitActive"
+					borderBottomRightRadius="10px"
+					borderTopRightRadius="10px"
 				/>
 			</Box>
 			<Drawer
+				placement="left"
 				isOpen={isOpen}
 				onClose={onClose}
-				placement="left"
 				onEsc={onClose}
 			>
 				<DrawerOverlay />
 				<DrawerContent
-					maxW="50%"
 					h="80px"
+					maxW="50%"
 					mt="40px"
 					bg="white"
-					borderBottomRightRadius="10px"
-					borderTopRightRadius="10px"
 					border={`2px solid ${theme.colors.login.userModalBgHover}`}
 					borderLeft="none"
+					borderBottomRightRadius="10px"
+					borderTopRightRadius="10px"
 					shadow={`rgba(0, 0, 0, 0.76) 0px 22px 70px 4px`}
 					zIndex="1"
 				>
-					<Box position="absolute">
+					<Box position="absolute" w="100%" h="100%" overflow="hidden">
 						<Image
 							src={BgDrawerPng}
-							objectFit="cover"
 							w="100%"
 							h="100%"
+							objectFit="cover"
 							opacity="0.2"
 						/>
 					</Box>
 					<HStack position="relative" pr="30px">
-						<Box position="absolute" mt="30px" left={["-10%", "5%"]}>
+						<Box position="absolute" left={["-10%", "5%"]} mt="30px">
 							<LoginInfoModal />
 						</Box>
 						<Box position="absolute" top="-30px" left={["50%", "60%"]}>

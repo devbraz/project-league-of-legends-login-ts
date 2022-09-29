@@ -10,26 +10,29 @@ import {
 	VStack,
 	useBreakpointValue,
 } from "@chakra-ui/react";
+
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
+
 import { theme } from "../../../styles/theme";
 
 export const LoginUserModal = () => {
 	const toast = useToast();
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
 	const handleClick = () => {
 		return toast({
 			position: "bottom",
 			duration: 2000,
 			render: () => (
 				<Flex
-					h="80px"
 					w={["100%", "500px"]}
+					h="80px"
+					p="10px"
+					alignItems="center"
 					bg="yellow.500"
 					borderRadius="5px"
-					p="10px"
 					color="white"
-					alignItems="center"
 				>
 					<BsFillExclamationDiamondFill fontSize="50px" />
 					<Flex flexDir="column" ml="10px">
@@ -40,10 +43,12 @@ export const LoginUserModal = () => {
 			),
 		});
 	};
+
 	const isWideVersion = useBreakpointValue({
 		base: false,
 		md: true,
 	});
+
 	return (
 		<>
 			<Flex flexDir="column" alignItems="center" mt="40px" mr="40px" zIndex="1">
@@ -90,8 +95,8 @@ export const LoginUserModal = () => {
 					display="flex"
 					h="200px"
 					w="270px"
-					top={["120px", "120px", "40px"]}
-					right={isWideVersion ? "110px" : undefined}
+					top={["120px", "120px", "100px", "40px"]}
+					right={["undefined", "undefined", "4px", "110px"]}
 					left={isWideVersion ? undefined : "0"}
 					p="35px"
 					bg="login.userModalBg"
